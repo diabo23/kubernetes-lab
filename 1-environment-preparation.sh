@@ -1,3 +1,8 @@
+#To redirect the output to a log file while maintaining the output on screen, launch the script adding: 2>&1 | tee script-1.log
+#. ./1-environment-preparation.sh 2>&1 | tee script-1.log
+#The example is using source so variables could be called outside the script for troubleshooting or operation reasons
+
+
 echo "
 ██╗  ██╗██████╗ ███████╗    ██╗      █████╗ ██████╗     ██████╗ ██████╗ ███████╗██████╗  █████╗ ██████╗  █████╗ ████████╗██╗ ██████╗ ███╗   ██╗
 ██║ ██╔╝╚════██╗██╔════╝    ██║     ██╔══██╗██╔══██╗    ██╔══██╗██╔══██╗██╔════╝██╔══██╗██╔══██╗██╔══██╗██╔══██╗╚══██╔══╝██║██╔═══██╗████╗  ██║
@@ -158,3 +163,12 @@ echo "*** Download CrowdStrike pull script *************************************
 
 curl -sSL -o falcon-container-sensor-pull.sh "https://raw.githubusercontent.com/CrowdStrike/falcon-scripts/main/bash/containers/falcon-container-sensor-pull/falcon-container-sensor-pull.sh"
 chmod +x falcon-container-sensor-pull.sh
+
+echo "*** Step a-08 ***********************************************************************************************************************"
+echo "*** Change the group ID to allow the use of Docker without SUDO (otherwise exit is needed to reload the session *********************"
+
+########################################################################################
+# CHANGE THE GROUP ID TO ALLOW USE OF DOCKER WITHOUT SUDO (otherwise "exit" is needed) #
+########################################################################################
+
+newgrp docker
